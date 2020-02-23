@@ -1,0 +1,2 @@
+(add-to-list 'load-path "~/.emacs.d/packages/go-mode")
+(require 'go-mode-autoloads)

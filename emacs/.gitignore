@@ -1,0 +1,16 @@
+# Logs and temp files
+*.log
+*~
+~*
+\#*
+*.swp
+*.cache
+
+# Mail settings
+.emacs.d/conf/mail.el
+.emacs.d/conf/smtp.el
+.emacs.d/conf/gnus.el
+
+# Status files
+.emacs.d/el-get/.loaddefs.el
+.emacs.d/el-get/.status.el
