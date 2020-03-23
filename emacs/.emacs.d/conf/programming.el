@@ -73,23 +73,46 @@
 (require 'semantic)
 (global-semanticdb-minor-mode 1)
 
+;; Enable config file highlighting
+(require 'generic-x)
+(define-generic-mode logcat-mode
+  ;; comments
+  nil
+  ;; keywords
+  nil
+  ;; color rules
+  '(("^//.*" . 'font-lock-comment-face)
+    (".* E .*" . 'package-status-incompat)
+    (".* E/.*: .*" . 'package-status-incompat)
+    (".* W .*" . 'package-status-disabled)
+    (".* W/.*: .*" . 'package-status-disabled))
+  ;; files for which to activate this mode
+  '("\\.clg$")
+  ;; do not hightlight unpared quotes
+  '((lambda () (set-syntax-table text-mode-syntax-table)))
+  "A mode for Android logcat files")
+
 ;; Disable tab intentation
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
-;; Automatic indentation
-(global-set-key (kbd "RET") 'newline-and-indent)
+;; Line numbering
+(add-hook 'prog-mode-hook #'linum-mode)
 
 ;; Deal with trailing namespaces
 (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(el-get-bundle ws-butler)
+(req-package ws-butler
+  :config
+  (progn
+    (require 'ws-butler)
+    (add-hook 'prog-mode-hook #'ws-butler-mode)))
 
 ;; Enable fontlock mode
 (global-font-lock-mode 1)
 
 ;; C/C++ settings
-
 (el-get-bundle flycheck-google-cpplint
   :url "https://github.com/flycheck/flycheck-google-cpplint.git"
   :features flycheck-google-cpplint)
@@ -102,6 +125,21 @@
                                '(warning . c/c++-googlelint))
     (custom-set-variables '(flycheck-googlelint-verbose "3")
                           '(flycheck-c/c++-googlelint-executable "~/.emacs.d/utils/cpplint.py"))))
+
+(el-get-bundle clang-format)
+(req-package clang-format
+  :config
+  (progn
+    (require 'clang-format)
+    (global-set-key (kbd "M-<tab>") 'clang-format-region)))
+
+(el-get-bundle clang-format+
+  :url "https://github.com/SavchenkoValeriy/emacs-clang-format-plus.git"
+  :features clang-format+)
+(req-package clang-format+
+  :config
+  (progn
+    (require 'clang-format+)))
 
 (defconst my-cc-style
   '("ellemtel"

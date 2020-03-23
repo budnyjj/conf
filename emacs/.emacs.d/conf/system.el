@@ -26,6 +26,7 @@
  '(fci-rule-color "#073642")
  '(flycheck-c/c++-googlelint-executable "~/.emacs.d/utils/cpplint.py")
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
+ '(flycheck-checker-error-threshold 10000)
  '(flycheck-googlelint-verbose "3")
  '(global-linum-mode nil)
  '(helm-gtags-auto-update t)
@@ -52,7 +53,7 @@
  '(jde-run-working-directory "/home/budnyjj/dev/java/projects/binary-lex/")
  '(org-agenda-files
    (quote
-    ("~/docs/org/home.org" "~/docs/org/university.org" "~/docs/org/work.org" "~/docs/org/fun.org")) t)
+    ("~/docs/org/home.org" "~/docs/org/university.org" "~/docs/org/work.org" "~/docs/org/fun.org")))
  '(package-selected-packages (quote (req-package)))
  '(preview-image-type (quote dvipng))
  '(save-place t nil (saveplace))

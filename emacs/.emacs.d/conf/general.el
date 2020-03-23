@@ -15,6 +15,8 @@
   :config
   (progn
     (require 'helm-config)
+    (setq helm-M-x-fuzzy-match t)
+    (setq helm-follow-mode-persistent t)
     (helm-mode 1)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
     (global-set-key (kbd "C-s") 'helm-occur)
@@ -43,6 +45,9 @@
 
 ;; Bell settings
 (setq visible-bell t)
+
+;; Highline current line
+(global-hl-line-mode t)
 
 ;; Org-mode settings
 (setq org-agenda-files (list "~/docs/org/plans.org"))
