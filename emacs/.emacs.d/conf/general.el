@@ -9,6 +9,7 @@
     (global-set-key (kbd "C-x C-e") 'emms)
     (global-set-key (kbd "M-S-<insert>") 'emms-add-directory-tree)))
 
+(el-get-bundle avy)
 (el-get-bundle async)
 (el-get-bundle helm)
 (req-package helm
