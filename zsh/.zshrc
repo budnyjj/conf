@@ -82,6 +82,9 @@ export EDITOR='vim'
 
 zstyle ':completion:*:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 
+# Use GTK theme for Qt5
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 # Add Android SDK tools to PATH
 ANDROID_SDK_HOME=/home/budnyjj/dev/tools/android/sdk
 DEPOT_TOOLS=/home/budnyjj/dev/tools/depot_tools
