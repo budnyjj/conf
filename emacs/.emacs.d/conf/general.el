@@ -9,18 +9,19 @@
     (global-set-key (kbd "C-x C-e") 'emms)
     (global-set-key (kbd "M-S-<insert>") 'emms-add-directory-tree)))
 
+(el-get-bundle ivy)
 (el-get-bundle avy)
 (el-get-bundle async)
 (el-get-bundle helm)
 (req-package helm
   :config
   (progn
-    (require 'helm-config)
     (setq helm-M-x-fuzzy-match t)
     (setq helm-follow-mode-persistent t)
     (helm-mode 1)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
     (global-set-key (kbd "C-s") 'helm-occur)
+    (global-set-key (kbd "M-x") 'helm-M-x)
     (define-key global-map [remap find-file] 'helm-find-files)
     (define-key global-map [remap occur] 'helm-occur)
     (define-key global-map [remap list-buffers] 'helm-buffers-list)

@@ -19,28 +19,21 @@
 (req-package json-mode
   :require json-reformat)
 
-(el-get-bundle git-emacs)
-(req-package git-emacs)
+(el-get-bundle magit)
+(req-package magit
+  :config
+  (progn
+    (setq-default magit-define-global-key-bindings 'recommended)))
 
 (el-get-bundle company-mode)
 (req-package company
   :config
   (progn
     (setq company-backends
-      '(company-semantic company-capf company-keywords))
+      '(company-capf company-keywords))
     (add-hook 'after-init-hook 'global-company-mode)
     (global-set-key (kbd "M-/") 'company-complete-common-or-cycle)
     (setq company-idle-delay 0)))
-
-(el-get-bundle function-args)
-(req-package function-args
-  :config
-  (progn
-    (require 'function-args)
-    (fa-config-default)
-    (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-    (define-key function-args-mode-map (kbd "M-j") 'moo-jump-local)
-    (define-key function-args-mode-map (kbd "M-o") 'fa-show)))
 
 (el-get-bundle helm-gtags)
 (req-package helm-gtags
@@ -59,19 +52,6 @@
     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-select)
     (define-key helm-gtags-mode-map (kbd "M-J") 'helm-gtags-dwim)
     (define-key helm-gtags-mode-map (kbd "M-B") 'helm-gtags-pop-stack)))
-
-(el-get-bundle semantic-stickyfunc-enhance)
-(req-package stickyfunc-enhance
-  :config
-  (progn
-    (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-    (semantic-mode 1)
-    (require 'stickyfunc-enhance)))
-
-;; Setup Semantic
-(require 'cc-mode)
-(require 'semantic)
-(global-semanticdb-minor-mode 1)
 
 ;; Enable config file highlighting
 (require 'generic-x)
@@ -98,7 +78,7 @@
 (setq indent-line-function 'insert-tab)
 
 ;; Line numbering
-(add-hook 'prog-mode-hook #'linum-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;; Deal with trailing namespaces
 (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
@@ -111,6 +91,7 @@
 
 ;; Enable fontlock mode
 (global-font-lock-mode 1)
+
 
 ;; C/C++ settings
 (el-get-bundle flycheck-google-cpplint
@@ -141,6 +122,10 @@
   (progn
     (require 'clang-format+)))
 
+(add-hook 'c-mode-hook (lambda () (setq fill-column 79)))
+(add-hook 'c++-mode-hook (lambda () (setq fill-column 79)))
+(add-hook 'python-mode-hook (lambda () (setq fill-column 79)))
+
 (defconst my-cc-style
   '("ellemtel"
     (c-offsets-alist . ((arglist-cont-nonempty . +)
@@ -150,6 +135,72 @@
 (c-add-style "my-cc-style" my-cc-style)
 (setq c-default-style "my-cc-style"
       c-basic-offset 4)
+
+
+;; Java settings
+
+;; JDEE
+(add-to-list 'load-path "~/.emacs.d/packages/jdee-2.4.1/lisp")
+(autoload 'jde-mode "jde" "JDE mode" t)
+(setq auto-mode-alist
+      (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
+
+;; gradle-mode
+;; (add-to-list 'load-path "~/.emacs.d/packages/gradle-mode")
+;; (require 'gradle-mode)
+
+;; (add-hook 'java-mode-hook (gradle-mode 1))
+
+;; groovy-mode
+;; (add-to-list 'load-path "~/.emacs.d/packages/groovy-mode")
+;; (require 'groovy-mode)
+
+;; (autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
+;; (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
+;; (add-to-list 'auto-mode-alist '("\.gradle$" . groovy-mode))
+;; (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+;; (add-to-list 'interpreter-mode-alist '("gradle" . groovy-mode))
+
+(add-hook 'java-mode-hook (lambda () (setq fill-column 120)))
+
+
+;; Go settings
+;; (add-to-list 'load-path "~/.emacs.d/packages/go-mode")
+;; (require 'go-mode-autoloads)
+
+
+;; PHP settings
+
+;;PHP mode
+;; (add-to-list 'load-path "~/.emacs.d/el-get/php-mode")
+;; (require 'php-mode)
+
+
+;; Python settings
+
+;; Python-mode configuration
+(setq python-indent-offset 4
+      python-check-command "pylint")
+
+;; Pymacs
+(add-to-list 'load-path "~/.emacs.d/packages/pymacs")
+
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+
+;; Ropemacs
+;; Need porting to Python3
+;; (require 'pymacs)
+;; (pymacs-load "ropemacs" "rope-")
+
+;; (remove-hook 'before-save-hook 'rope-before-save-actions)
+;; (remove-hook 'after-save-hook 'rope-after-save-actions)
+;; (remove-hook 'kill-emacs-hook 'rope-exiting-actions)
+
 
 (provide 'programming)
 ;;; programming.el ends here

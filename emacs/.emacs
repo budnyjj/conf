@@ -26,12 +26,6 @@
 (require 'general)
 (require 'programming)
 
-;; (load "~/.emacs.d/conf/java.el")
-;; (load "~/.emacs.d/conf/python.el")
-;; (load "~/.emacs.d/conf/php.el")
-;; (load "~/.emacs.d/conf/tex.el")
-;; (load "~/.emacs.d/conf/go.el")
-
 (el-get 'sync)
 (req-package-finish)
 (custom-set-variables
