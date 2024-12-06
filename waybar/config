@@ -1,0 +1,31 @@
+{
+  "layer": "bottom",
+  "position": "bottom",
+  "height": 20,
+  "spacing": 5,
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["sway/mode","sway/language","battery","tray","clock"],
+
+  "sway/workspaces": {
+    "window-rewrite": {},
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "1:file":  [],
+      "2:dev":   [],
+      "3:dev2":  [],
+      "4:web":   [],
+      "5:doc":   [],
+      "6:media": [],
+      "7:talk":  [],
+      "8:misc":  [],
+    },
+    "format": "{name}",
+  },
+
+  "clock": {
+    "timezones": ["","Europe/Minsk","Asia/Jerusalem"],
+    "format": "{:%a %b %d, %H:%M %Z}",
+    "tooltip-format": "{tz_list}",
+  },
+}

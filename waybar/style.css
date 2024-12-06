@@ -1,0 +1,15 @@
+window#waybar {
+    background: @theme_base_color;
+    border-bottom: 1px solid @unfocused_borders;
+    color: @theme_text_color;
+    font-family: sans;
+    font-size: 14px;
+}
+
+#workspaces button {
+    padding: 0 0.3em;
+}
+
+#workspaces button.current_output.focused {
+    background: #2b2e38;
+}
