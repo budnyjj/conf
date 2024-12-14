@@ -13,3 +13,15 @@ window#waybar {
 #workspaces button.current_output.focused {
     background: #2b2e38;
 }
+
+#battery.full {
+    color: #7F9F7F;
+}
+
+#battery.warning {
+    color: #E3CEAB;
+}
+
+#battery.critical {
+    color: #CC9393;
+}

@@ -170,6 +170,7 @@ bar {
     default_floating_border pixel 2
     titlebar_border_thickness 0
 
+    for_window [shell="xwayland"] title_format "[XWayland] %title"
 #
 # Custom hotkeys
 #

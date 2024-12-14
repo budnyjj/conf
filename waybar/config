@@ -23,6 +23,15 @@
     "format": "{name}",
   },
 
+  "battery": {
+    "format": " {capacity}%",
+    "states": {
+      "full": 100,
+      "warning": 30,
+      "critical": 15,
+    },
+  },
+
   "clock": {
     "timezones": ["","Europe/Minsk","Asia/Jerusalem"],
     "format": "{:%a %b %d, %H:%M %Z}",
