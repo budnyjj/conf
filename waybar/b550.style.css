@@ -3,15 +3,31 @@ window#waybar {
     border-bottom: 1px solid @unfocused_borders;
     color: @theme_text_color;
     font-family: sans;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #workspaces button {
     padding: 0 0.3em;
 }
 
-#workspaces button.current_output.focused {
-    background: #2b2e38;
+#workspaces button.current_output label {
+    background-color: transparent;
+}
+
+#workspaces button.current_output {
+    background-color: #2B2E38;
+}
+
+#workspaces button.current_output.empty {
+    background-color: transparent;
+}
+
+#workspaces button.current_output.visible {
+    background-color: #7F9F7F;
+}
+
+#workspaces button.current_output.visible label {
+    color: #2B2E38;
 }
 
 #battery.full {
